@@ -1,0 +1,60 @@
+                 -: Back-End Notes :-
+
+Server Create :-
+
+Shab se pahile server Create krte hai Express se 
+
+const express = require('express');  ( require comman js me imort krne ka synthax hai ) 
+                
+Ab ese hm ak veriable me kr lete hai 
+
+const  server = express();     (ye ek method hai create hone ke baad )
+
+server is a route esi se ho ke sara data jata hai 
+
+eske baad es post dete hai 
+
+synthax :- app.listen(3946, ()=>{
+    console.log('server is running on port 3946');
+});
+
+----------------------------------------------------------------------------
+ Agar hme jo bhi json value aa rha hai use object ke convert krna hai to hm server me ek mathod use kr lete hai 
+
+ Synthax :-  server.use(express.jason )       
+
+ -------------------------------------------------------------
+                -: Controler:-
+
+ server.get('/', (req,res)={
+
+    res.send('welcome to Api ')
+ })
+
+ Note :- 1:- '/' ye rk routh path hai aur eske baar ek call back function jo ki hmara controler hai jisme hm api ka raspose dete hai 
+        2:- req jo user ke taraf se data aayega aur res jo hm use response denge , response dene ke liye send ka use krte hai route  me 
+        3:- get ek mathod hai ki kis method se data ja rha rha hai jeise get, post ,etc       
+
+-----------------------------------------------------------------------------------
+            -:Middle ware :-
+
+middele ware use hm jaha krte hai jaha hme bich me kuchh authorize krne hota hai 
+
+synthax :- const m1 = (req, res, next)=>{
+
+    console.log(req.params);
+   
+    if(!req.params.key) return res.status(400).json({message: 'please send a key'});
+
+    if(req.params.key != key) return res.status(401).json({message: 'please send a valid key'})
+
+    next();     Next dene se data aage transfer ho jata hai 
+};
+
+ ese hm controler se pahile use ketr hai 
+
+
+ synthax :- server.get('/', m1 ,(req,res)={
+
+    res.send('welcome to Api ')
+ })
