@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { type } = require('os');
 
 const url = 'mongodb+srv://abhishekmishra342001:Abhi2001@abhishek.9kvuy.mongodb.net/?retryWrites=true&w=majority&appName=Abhishek'
 
@@ -53,23 +52,13 @@ mongoose.connect(url)
 
 app.post('/create-user',(req,res)=>{
     try {
-      res.status(200).json({massege:'api is sucessful fatch', data:res.body});
-      console.log(res.body)
+        console.log(req.body);
+      res.status(200).json({massege:'api is sucessful fatch'});
+     
     } catch (error) {
         console.log(error)
         res.status(500).json({message: 'internal server error'});
     }
-})
-
-app.get('/insert-data',(req,res)=>{
-try {
-    
-    res.status(200).json({massege:'insert data api is sucessfull run'});
-    console.log(res.body);     //undefined error
-
-} catch (error) {
-    res.status(500).json({maggesg:'error'})
-}
 })
 
 // espress give port 
